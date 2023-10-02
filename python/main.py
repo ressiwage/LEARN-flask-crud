@@ -28,7 +28,7 @@ def index():
             .join(rel, rel.c.user_id==users.c.id, isouter=True)
             .join(books, rel.c.book_id==books.c.id, isouter=True))
             ).all()]
-    
+    print(users)
     for k,v in groupby(sorted(users, key=lambda x:x['users_id']),key=lambda x:x['users_id']):
         print(k, list(v))
         
