@@ -25,11 +25,9 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 
 RUN apt-get update 
 
-RUN pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
-
 COPY . /app
 
 # configure the container to run in an executed manner
 ENTRYPOINT [ "python" ]
 
-CMD ["run.py" ]
+CMD ["python/main.py" ]
