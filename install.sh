@@ -1,7 +1,6 @@
 sudo apt install gnome-terminal
 sudo apt remove docker-desktop
 sudo rm /usr/local/bin/com.docker.cli
-sudo apt purge docker-desktop
 sudo apt-get update
 sudo apt update
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
@@ -13,3 +12,4 @@ sudo apt install docker-ce
 
 sudo apt-get update
 sudo apt-get install docker-compose-plugin
+sudo apt install docker-compose
