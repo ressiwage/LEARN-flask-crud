@@ -25,7 +25,7 @@ jobs:
       with:
         host: 185.244.173.78
         username: root
-        password: 6k3cmF7nL4eq
+        password: ${{ secrets.SERVER_PASSWORD }}
         source: ./
         target: /root/task/
         
