@@ -1,0 +1,31 @@
+name: CI-SFTP
+ 
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ master, main ]
+#  pull_request:
+#    branches: [ testapi ]
+ 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+ 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Deploy to server
+      uses: appleboy/scp-action@master
+      with:
+        host: 185.244.173.78
+        username: root
+        password: 6k3cmF7nL4eq
+        source: ./
+        target: /root/task/
+        
