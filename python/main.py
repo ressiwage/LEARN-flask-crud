@@ -28,7 +28,7 @@ def index():
             .join(rel, rel.c.user_id==users.c.id, isouter=True)
             .join(books, rel.c.book_id==books.c.id, isouter=True))
             ).all()]
-        users = [dict(u._mapping) for u in session.execute(select(users.c).select_from(users).all())]
+        users = [dict(u._mapping) for u in session.execute(select(users.c).select_from(users)).all()]
     print(users_books)
     u_b = {}
     for k,v in groupby(sorted(users_books, key=lambda x:x['users.id']),key=lambda x:x['users.id']):
