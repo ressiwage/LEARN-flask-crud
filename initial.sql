@@ -1,3 +1,3 @@
-CREATE TABLE `common`.`my_table` (
+CREATE TABLE `library`.`my_table` (
   `id` INT NOT NULL,
   PRIMARY KEY (`id`));
