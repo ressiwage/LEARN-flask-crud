@@ -29,7 +29,7 @@ def index():
             .join(books, rel.c.book_id==books.c.id, isouter=True))
             ).all()]
     print(users)
-    for k,v in groupby(sorted(users, key=lambda x:x['users_id']),key=lambda x:x['users_id']):
+    for k,v in groupby(sorted(users, key=lambda x:x['users.id']),key=lambda x:x['users.id']):
         print(k, list(v))
         
     return render_template('index.html', users=users)
