@@ -1,4 +1,4 @@
-FROM python:3.10.8-buster
+FROM python:3.10.13-slim-bookworm
 EXPOSE 4000
 
 COPY ./requirements.txt /app/requirements.txt
