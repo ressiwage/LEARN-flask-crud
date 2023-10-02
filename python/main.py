@@ -21,8 +21,8 @@ def index():
     with Session(engines['library']) as session:
         users = [dict(u._mapping) for u in session.execute(
             select(
-            *[str(column) for column in users.c],
-            *[str(column) for column in books.c]
+            *[column.label(str(column)) for column in users.c],
+            *[column.label(str(column)) for column in books.c]
             ).select_from(
             users
             .join(rel, rel.c.user_id==users.c.id, isouter=True)
