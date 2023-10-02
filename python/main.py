@@ -19,7 +19,7 @@ def index():
     books = tables['library']['books']
     rel = tables['library']['r_u_b']
     with Session(engines['library']) as session:
-        users = [u._mapping for u in session.execute(
+        users = [dict(u._mapping) for u in session.execute(
             select(
             users.c,
             books.c
@@ -29,7 +29,7 @@ def index():
             .join(books, rel.c.book_id==books.c.id, isouter=True))
             ).all()]
     
-    for k,v in groupby(sorted(users),key=lambda x:x['users_id']):
+    for k,v in groupby(sorted(users, key=lambda x:x['users_id']),key=lambda x:x['users_id']):
         print(k, list(v))
         
     return render_template('index.html', users=users)
