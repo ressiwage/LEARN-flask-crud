@@ -1,5 +1,3 @@
-sudo apt install gnome-terminal
-sudo apt remove docker-desktop
 sudo rm /usr/local/bin/com.docker.cli
 sudo apt-get update
 sudo apt update
