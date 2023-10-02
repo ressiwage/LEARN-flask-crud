@@ -27,7 +27,6 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 
 COPY . /app
 
-# configure the container to run in an executed manner
 ENTRYPOINT [ "python" ]
 
 CMD ["python/main.py" ]
