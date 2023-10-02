@@ -1,4 +1,4 @@
-FROM python:3.10.13-slim-bookworm
+FROM python:3.9-slim
 EXPOSE 4000
 
 COPY ./requirements.txt /app/requirements.txt
