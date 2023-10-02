@@ -1,7 +1,8 @@
 from mysql import engines, tables, inspectors
-from flask import Flask, request
+from flask import Flask, request, render_template
 from sqlalchemy.orm import Session
 from sqlalchemy import select
+from itertools import groupby
 
 
 app = Flask(__name__)
@@ -13,10 +14,28 @@ def get_table(name):
         js = request.get_json(silent=True)
 
 @app.route('/', methods=['GET'])
-def get_table(name):
-    table = tables['library'][name]
+def get_table():
+    users = tables['library']['users']
+    books = tables['library']['books']
+    rel = tables['library']['r_u_b']
     with Session(engines['library']) as session:
-        data = [i._mapping for i in session.execute(select(table.c).select_from(table)).all()]
+        users = [u._mapping for u in session.execute(
+            select(
+            users.c,
+            books.c
+            ).select_from(
+            users
+            .join(rel, rel.c.user_id==users.c.id, isouter=True)
+            .join(books, rel.c.book_id==books.c.id, isouter=True))
+            ).all()]
+    
+    for k,v in groupby(sorted(users),key=lambda x:x['users_id']):
+        print(k, list(v))
+        
+    return render_template('index.html', users=users)
+        
+
+        
     
     
 if __name__ == '__main__':
