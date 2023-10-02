@@ -9,12 +9,12 @@ app = Flask(__name__)
 
 
 @app.route('/table/<string:name>', methods=['POST'])
-def get_table(name):
+def _test(name):
     with Session(engines['library']) as session:
         js = request.get_json(silent=True)
 
 @app.route('/', methods=['GET'])
-def get_table():
+def index():
     users = tables['library']['users']
     books = tables['library']['books']
     rel = tables['library']['r_u_b']
