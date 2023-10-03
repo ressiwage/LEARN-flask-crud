@@ -12,9 +12,19 @@
 	<!-- <script src="index.js"></script> -->
     {% include 'header.html' %}
     <main>
+        <iframe name="dummy" style="display:none;"></iframe>
         {% for user in users %}
-            <h3>{{user.name}}</h3>
+            <form target="dummy"  method="post">
+            <input name="n" type="text" value="{{user.name}}">
+            <button formaction="/edit-users-{{user.id}}" type="submit" class="btn btn-outline-primary">edit</button>
+            <button formaction="/delete-users-{{user.id}}" type="submit" class="btn btn-outline-primary">delete</button>
+            </form>
         {% endfor %}
+        <hr>
+        <form target="dummy" action="/create-users" method="post">
+        <input name="n" type="text" value="">
+        <button type="submit" class="btn btn-outline-primary">create user</button>
+        </form>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   </body>

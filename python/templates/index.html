@@ -12,8 +12,18 @@
 	<!-- <script src="index.js"></script> -->
     {% include 'header.html' %}
     <main>
+        <h5>total books: {{totalbooks}}</h5>
+        <h5>total users: {{totalusers}}</h5>
+        <h5>most readable author: {{mostreadable}}</h5>
+        <h5>most readable genres: </h5>
+        <ul>
+          {% for g in mostreadablegenres%}
+          <li>{{g}}</li>
+          {%endfor%}
+        </ul>
+        <hr>
         {% for user in users %}
-            <h3>книги {{user.name}}:</h3>
+            <h3>книги {{user.name}}: (total {{user.books|length}}, current {{user.books_current}}, last visit: {{user.last_visit}}, fav genre:{{user.fav_genre}})</h3>
             {% for book in user.books %}
                 <p>книга: {{book.name}}, взята: {{book.took}}, вернул(а):{{book.returned}}</p>
             {% endfor %}
