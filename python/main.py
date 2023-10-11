@@ -26,7 +26,7 @@ def index():
                            users=users,
                            totalbooks=len(books),
                            totalusers=len(users),
-                           **Adapter.make_json_for_index.value(users, books, users_books))
+                           **Adapter.make_json_for_index(users, books, users_books))
 
 
 @app.route('/clients', methods=['GET'])
