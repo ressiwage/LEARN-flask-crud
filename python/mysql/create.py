@@ -10,7 +10,7 @@ def create_db_resources(creds):
     tables = deepcopy(creds)
     inspectors = deepcopy(creds)
     engines_created = 0
-    
+
     for db, data in creds.items():
         engines_created += 1
         print(f'Creating resources for database "{db}"')
@@ -23,5 +23,8 @@ def create_db_resources(creds):
         tables[db] = Base.metadata.tables
         inspectors[db] = inspect(eng)
     if engines_created == 0:
-        raise Exception('Not a single database engine created. Check Config attributes "DEBUG_DB_NAME" and "DEBUG_PRODUCT_NAME" when environmental variable "DEBUG_FLAG" is TRUE. Database name or product does not exist')
+        raise Exception('Not a single database engine created. Check Config \
+                        attributes "DEBUG_DB_NAME" and "DEBUG_PRODUCT_NAME" \
+                        when environmental variable "DEBUG_FLAG" is TRUE. \
+                        Database name or product does not exist')
     return engines, tables, inspectors
